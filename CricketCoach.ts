@@ -1,15 +1,17 @@
 import {Coach} from "./Coach";
 import {FortuneService} from "./FortuneService";
-import {HappyFortuneService} from "./HappyFortuneService";
 import {SadFortuneService} from "./SadFortuneService";
+import {CoachType} from "./CoachType";
 
 
 class CricketCoach implements Coach
 {
+    coachType:CoachType;
     fortuneService:FortuneService
 
 
-    constructor() {
+    constructor(coachType:CoachType) {
+        this.coachType=coachType;
         this.fortuneService=new SadFortuneService();
     }
 
@@ -20,9 +22,14 @@ class CricketCoach implements Coach
     getDailyWorkOut(): string {
         return "Practice Spin Bowling Today";
     }
+getCoachType()
+{
+    console.log('Coach type is: '+this.coachType.toString());
+}
 
 }
 
-let coach=new CricketCoach();
+let coach=new CricketCoach(CoachType.freelance);
 console.log(coach.getDailyWorkOut());
 console.log(coach.getDailyFortune());
+console.log(coach.coachType);
